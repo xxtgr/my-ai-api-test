@@ -1,34 +1,49 @@
-# AI API 自动化测试框架
+# AI接口自动化测试
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
-[![pytest](https://img.shields.io/badge/pytest-9.0+-blue.svg)](https://pytest.org)
-[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
+用pytest和requests做的AI接口测试小项目。
 
-## 📖 项目简介
+## 用到了什么
 
-本项目是一个针对AI接口的自动化测试框架，支持：
-- AI问答接口的功能测试
-- 接口封装与断言管理
-- 数据驱动测试（参数化）
-- 可视化测试报告生成
-- 本地Mock Server模拟AI行为
+- Python + pytest
+- requests（调接口）
+- Flask（模拟AI服务）
+- pytest-html（测试报告）
 
-## 🛠️ 技术栈
+## 项目结构
 
-| 技术 | 用途 |
-| :--- | :--- |
-| Python 3.10 | 主编程语言 |
-| pytest | 测试框架 |
-| requests | HTTP请求 |
-| Flask | Mock Server |
-| pytest-html | 测试报告 |
+```
+- api_client.py    # 接口封装
+- assertions.py    # 断言函数
+- test_ai_api.py   # 测试用例
+- mock_server.py   # Mock服务
+- run_tests.py     # 运行入口
+```
 
-## 📁 项目结构
-ai-api-test-framework/
-├── api_client.py # API客户端封装
-├── assertions.py # 公共断言函数
-├── test_ai_api.py # pytest测试用例
-├── mock_server.py # Flask Mock服务
-├── run_tests.py # 测试运行入口
-├── report.html # 测试报告（生成）
-└── README.md # 项目说明
+## 怎么跑
+
+1. 安装依赖
+```
+pip install pytest requests flask pytest-html
+```
+
+2. 启动Mock服务
+```
+python mock_server.py
+```
+
+3. 另开一个终端，运行测试
+```
+pytest test_ai_api.py -v --html=report.html
+```
+
+## 测了什么
+
+- 正常问答（天气、诗歌、数学、笑话、AI概念）
+- 边界情况（空输入、超长输入）
+
+共7个用例，全部通过。
+
+## 测试报告
+
+运行后会生成 `report.html`，浏览器打开就能看。
+```
