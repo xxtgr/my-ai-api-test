@@ -59,7 +59,7 @@ def test_ai_chat_boundary(client, question, expected_code):
     assert response.json().get("code") == expected_code
 
 
-def test_askai(client):
+def test_askai_sayhi(client):
     response = client.ask_ai("你好")
     assert_status_code(response, 200)
     assert_response_code(response, 200)
