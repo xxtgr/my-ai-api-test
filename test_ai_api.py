@@ -8,8 +8,7 @@ from assertions import (
 )
 
 # 测试配置
-BASE_URL = "http://127.0.0.1:5000"   # 替换成你实际的API地址
-
+BASE_URL = "http://127.0.0.1:5000"  # 替换成你实际的API地址
 
 @pytest.fixture
 def client():
@@ -58,3 +57,12 @@ def test_ai_chat_boundary(client, question, expected_code):
     assert_status_code(response, 200)
     # 注意：实际业务码可能不是400，按实际情况调整
     assert response.json().get("code") == expected_code
+
+
+def test_askai(client):
+    response = client.ask_ai("你好")
+    assert_status_code(response, 200)
+    assert_response_code(response, 200)
+
+
+

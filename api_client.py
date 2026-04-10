@@ -25,11 +25,12 @@ class AIClient:
         """AI问答接口（需要先登录）"""
         url = f"{self.base_url}/api/chat"
         headers = {
-            "Authorization": f"Bearer {self.token}" if self.token else ""
+            "Authorization": f"Bearer {self.token}" if self.token else "",
+            "User-Agent": "MyTest/1.0"
         }
         data = {
             "question": question,
             "temperature": 0.7
         }
-        response = self.session.post(url, json=data, headers=headers)
+        response = self.session.post(url, json=data, headers=headers, timeout=5)
         return response
